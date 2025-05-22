@@ -4,6 +4,8 @@ using CEditorBoss;
 using BTD_Mod_Helper.Api.ModOptions;
 using Il2CppAssets.Scripts.Unity;
 using UnityEngine;
+using Il2CppAssets.Scripts.Simulation.Bloons;
+using Il2CppAssets.Scripts.Simulation.Track;
 
 [assembly: MelonInfo(typeof(CEditorBoss.Main), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -29,7 +31,7 @@ public class Main : BloonsTD6Mod
     public static bool isRanked { get; set; }
 
 
-    public static ModSettingEnum<BossType> BossName = new(BossType.Bloonarius)
+    public static ModSettingEnum<BossType> BossName = new ModSettingEnum<BossType>(BossType.Bloonarius)
     {
         displayName = "Boss Type",
 
@@ -45,30 +47,32 @@ public class Main : BloonsTD6Mod
         }
     };
 
-    public static ModSettingBool Elite = new(false)
+    public static ModSettingBool Elite = new ModSettingBool(false)
     {
         displayName = "Elite",
         description = "Check if Boss should be elite or not"
     };
 
-    public static ModSettingBool Ranked = new(false)
+    public static ModSettingBool Ranked = new ModSettingBool(false)
     {
         displayName = "Ranked",
         description = "Check if Boss should be ranked or not"
     };
 
-    public static ModSettingInt BossHealthMultiplier = new(1)
+    public static ModSettingDouble BossHealthMultiplier = new ModSettingDouble(1.0)
     {
         displayName = "Boss Health Multiplier",
-        min = 0,
-        max = 2000
+        description = "Set the Percentage",
+        min = 0.0,
+        max = 2000.0
     };
 
-    public static ModSettingInt BossSpeedMultiplier = new(1)
+    public static ModSettingDouble BossSpeedMultiplier = new ModSettingDouble(1.0)
     {
         displayName = "Boss Speed Multiplier",
-        min = 0,
-        max = 2000
+        description = "Set the Percentage",
+        min = 0.0,
+        max = 2000.0
     };
 
 
@@ -89,8 +93,11 @@ public class Main : BloonsTD6Mod
             isElite = Elite;
             isRanked = Ranked;
 
-            challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier;
-            challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier;
+            challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier/100;
+            challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier/100;
+            challengeEditorModel.startRules.endRound = 140;
+            challengeEditorModel.startRules.round = 40;
+
         }
     }
 }

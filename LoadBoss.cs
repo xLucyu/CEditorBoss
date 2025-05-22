@@ -1,7 +1,7 @@
-﻿using BTD_Mod_Helper;
-using BTD_Mod_Helper.Extensions;
+﻿using BTD_Mod_Helper.Extensions;
 using HarmonyLib;
 using Il2CppAssets.Scripts.Models.ServerEvents;
+using Il2CppAssets.Scripts.Simulation.Track;
 using Il2CppAssets.Scripts.Unity.UI_New.ChallengeEditor;
 using Il2CppAssets.Scripts.Unity.UI_New.InGame;
 
@@ -47,7 +47,6 @@ public static class LoadBoss
         var isElite = Main.isElite;
         var isRanked = Main.isRanked;
 
-
         InGameData.Editable.SetupBoss(
            bossType.ToString(),
            bossType,
@@ -68,3 +67,4 @@ public static class LoadBoss
              );
         }
 }
+
