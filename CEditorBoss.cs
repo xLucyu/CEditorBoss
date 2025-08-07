@@ -4,8 +4,12 @@ using CEditorBoss;
 using BTD_Mod_Helper.Api.ModOptions;
 using Il2CppAssets.Scripts.Unity;
 using UnityEngine;
-using Il2CppAssets.Scripts.Simulation.Bloons;
-using Il2CppAssets.Scripts.Simulation.Track;
+using Il2CppAssets.Scripts.Models.Towers;
+using Il2CppAssets.Scripts.Models.Towers.Behaviors.Attack;
+using Il2CppAssets.Scripts.Models.Towers.Behaviors.Attack.Behaviors;
+using Il2CppAssets.Scripts.Data.Behaviors.Towers;
+using Il2CppAssets.Scripts.Models;
+using BTD_Mod_Helper.Extensions;
 
 [assembly: MelonInfo(typeof(CEditorBoss.Main), ModHelperData.Name, ModHelperData.Version, ModHelperData.RepoOwner)]
 [assembly: MelonGame("Ninja Kiwi", "BloonsTD6")]
@@ -93,11 +97,32 @@ public class Main : BloonsTD6Mod
             isElite = Elite;
             isRanked = Ranked;
 
-            challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier/100;
-            challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier/100;
+            challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
+            challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
             challengeEditorModel.startRules.endRound = 140;
-            challengeEditorModel.startRules.round = 40;
+
 
         }
     }
+
+    
+    public override void OnTowerModelChanged(Il2CppAssets.Scripts.Simulation.Towers.Tower tower, Il2CppAssets.Scripts.Models.Model newModel)
+    {
+        base.OnTowerModelChanged(tower, newModel);
+
+        if (tower.towerModel.name.Contains("SniperMonkey"))
+        {
+            var towerModel = newModel.Cast<Il2CppAssets.Scripts.Models.Towers.TowerModel>();
+            var attackModel = towerModel.GetAttackModel();
+            if (attackModel != null && attackModel.weapons.Count > 0)
+            {
+                var projectile = attackModel.weapons[0].projectile;
+                var damageModel = projectile.GetDamageModel();
+                damageModel.damage = 9999999f;
+
+                MelonLogger.Msg($"Modified Sniper {towerModel.name} to have infinite damage.");
+            }
+        }
+    }
+    
 }
