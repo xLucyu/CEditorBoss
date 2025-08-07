@@ -63,20 +63,17 @@ public class Main : BloonsTD6Mod
         description = "Check if Boss should be ranked or not"
     };
 
-    public static ModSettingDouble BossHealthMultiplier = new ModSettingDouble(1.0)
+    public static ModSettingDouble BossHealthMultiplier = new ModSettingDouble(100.0)
     {
         displayName = "Boss Health Multiplier",
         description = "Set the Percentage",
-        min = 0.0,
-        max = 2000.0
     };
 
-    public static ModSettingDouble BossSpeedMultiplier = new ModSettingDouble(1.0)
+    public static ModSettingDouble BossSpeedMultiplier = new ModSettingDouble(100.0)
     {
         displayName = "Boss Speed Multiplier",
         description = "Set the Percentage",
-        min = 0.0,
-        max = 2000.0
+
     };
 
 
