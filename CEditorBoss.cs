@@ -94,32 +94,14 @@ public class Main : BloonsTD6Mod
             isElite = Elite;
             isRanked = Ranked;
 
+            challengeEditorModel.roundSets.Clear();
+            challengeEditorModel.roundSets.Add(BossName?.GetValue()?.ToString()?.ToLower());
+
             challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
             challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
             challengeEditorModel.startRules.endRound = 140;
 
 
         }
-    }
-
-    
-    public override void OnTowerModelChanged(Il2CppAssets.Scripts.Simulation.Towers.Tower tower, Il2CppAssets.Scripts.Models.Model newModel)
-    {
-        base.OnTowerModelChanged(tower, newModel);
-
-        if (tower.towerModel.name.Contains("SniperMonkey"))
-        {
-            var towerModel = newModel.Cast<Il2CppAssets.Scripts.Models.Towers.TowerModel>();
-            var attackModel = towerModel.GetAttackModel();
-            if (attackModel != null && attackModel.weapons.Count > 0)
-            {
-                var projectile = attackModel.weapons[0].projectile;
-                var damageModel = projectile.GetDamageModel();
-                damageModel.damage = 9999999f;
-
-                MelonLogger.Msg($"Modified Sniper {towerModel.name} to have infinite damage.");
-            }
-        }
-    }
-    
+    }    
 }
