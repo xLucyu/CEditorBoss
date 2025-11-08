@@ -95,7 +95,7 @@ public class Main : BloonsTD6Mod
             isRanked = Ranked;
 
             challengeEditorModel.roundSets.Clear();
-            challengeEditorModel.roundSets.Add(BossName?.GetValue()?.ToString()?.ToLower());
+            challengeEditorModel.roundSets.Add(BossName?.GetValue()?.ToString()?.ToLower()); // credits to @doruat
 
             challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
             challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
