@@ -82,6 +82,47 @@ public class Main : BloonsTD6Mod
         ModHelper.Msg<Main>("CEditorBoss loaded!");
     }
 
+    public override void OnMatchEnd()
+    {
+        if (Game.instance?.playerService?.Player == null) return;
+
+        var challengeEditorModel = Game.instance.playerService.Player.Data.challengeEditorModel;
+
+        selectedBoss = BossName;
+        isElite = Elite;
+        isRanked = Ranked;
+
+        challengeEditorModel.roundSets.Clear();
+        challengeEditorModel.roundSets.Add(BossName?.GetValue()?.ToString()?.ToLower());
+
+        challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
+        challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
+        challengeEditorModel.startRules.round = 1;
+        challengeEditorModel.startRules.endRound = 140;
+    }
+        
+    public override void OnMainMenu()
+    {
+
+        ModHelper.Msg<Main>("yippee");
+
+        if (Game.instance?.playerService?.Player == null) return;
+
+        var challengeEditorModel = Game.instance.playerService.Player.Data.challengeEditorModel;
+
+        selectedBoss = BossName;
+        isElite = Elite;
+        isRanked = Ranked;
+
+        challengeEditorModel.roundSets.Clear();
+        challengeEditorModel.roundSets.Add(BossName?.GetValue()?.ToString()?.ToLower());
+
+        challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
+        challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
+        challengeEditorModel.startRules.round = 1;
+        challengeEditorModel.startRules.endRound = 140;
+    }
+
     public override void OnUpdate()
     {
         if (Game.instance?.playerService?.Player == null) return;
@@ -99,6 +140,7 @@ public class Main : BloonsTD6Mod
 
             challengeEditorModel.bloonModifiers.healthMultipliers.boss = BossHealthMultiplier / 100;
             challengeEditorModel.bloonModifiers.bossSpeedMultiplier = BossSpeedMultiplier / 100;
+            challengeEditorModel.startRules.round = 1;
             challengeEditorModel.startRules.endRound = 140;
 
 
