@@ -23,7 +23,7 @@ public enum BossType
     Dreadbloon,
     Lych, 
     Phayze,
-    Blastapopulous
+    Blastapopoulos
 }
 
 
@@ -46,7 +46,7 @@ public class Main : BloonsTD6Mod
             BossType.Dreadbloon => "Dreadbloon",
             BossType.Lych => "Lych",
             BossType.Phayze => "Phayze",
-            BossType.Blastapopulous => "Blastapopulous",
+            BossType.Blastapopoulos => "Blastapopoulos",
             _ => boss.ToString()
         }
     };
