@@ -23,7 +23,7 @@ public enum BossType
     Dreadbloon,
     Lych, 
     Phayze,
-    Blastapopulous
+    Blastapopoulos
 }
 
 
