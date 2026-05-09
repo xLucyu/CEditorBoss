@@ -12,6 +12,11 @@
     <ItemGroup>
         <Content Include=".github\workflows\build.yml" />
     </ItemGroup>
+    <ItemGroup>
+      <Reference Include="BossRounds">
+        <HintPath>..\..\BossRounds.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 
     <Import Project="..\btd6.targets" />
 </Project>

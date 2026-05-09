@@ -2,8 +2,8 @@ namespace CEditorBoss;
 
 public static class ModHelperData
 {
-    public const string WorksOnVersion = "48.2";
-    public const string Version = "1.0.0";
+    public const string WorksOnVersion = "51.2";
+    public const string Version = "1.0.3";
     public const string Name = "CEditorBoss";
 
     public const string Description = "Lets you play all bosses in challenge Editor with custom rules!";

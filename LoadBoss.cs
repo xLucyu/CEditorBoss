@@ -1,9 +1,9 @@
 ﻿using BTD_Mod_Helper.Extensions;
 using HarmonyLib;
 using Il2CppAssets.Scripts.Models.ServerEvents;
-using Il2CppAssets.Scripts.Simulation.Track;
 using Il2CppAssets.Scripts.Unity.UI_New.ChallengeEditor;
 using Il2CppAssets.Scripts.Unity.UI_New.InGame;
+
 
 namespace CEditorBoss.LoadBoss;
 
@@ -32,20 +32,21 @@ public static class LoadBoss
         return bossType switch
         {
             CEditorBoss.BossType.Bloonarius => Il2CppAssets.Scripts.Data.Boss.BossType.Bloonarius,
+            CEditorBoss.BossType.Lych => Il2CppAssets.Scripts.Data.Boss.BossType.Lych,
             CEditorBoss.BossType.Vortex => Il2CppAssets.Scripts.Data.Boss.BossType.Vortex,
             CEditorBoss.BossType.Dreadbloon => Il2CppAssets.Scripts.Data.Boss.BossType.Dreadbloon,
-            CEditorBoss.BossType.Lych => Il2CppAssets.Scripts.Data.Boss.BossType.Lych,
             CEditorBoss.BossType.Phayze => Il2CppAssets.Scripts.Data.Boss.BossType.Phayze,
-            CEditorBoss.BossType.Blastapopulous => Il2CppAssets.Scripts.Data.Boss.BossType.Blastapopoulos,
+            CEditorBoss.BossType.Blastapopoulus => Il2CppAssets.Scripts.Data.Boss.BossType.Blastapopoulos,
+            CEditorBoss.BossType.Diamondback => Il2CppAssets.Scripts.Data.Boss.BossType.Diamondback,
             _ => Il2CppAssets.Scripts.Data.Boss.BossType.Bloonarius
         };
     }
 
     public static void Prefix()
     {
-        var bossType = ConvertToGameBossType(Main.selectedBoss);
-        var isElite = Main.isElite;
-        var isRanked = Main.isRanked;
+        var bossType = ConvertToGameBossType(Main.BossName);
+        var isElite = Main.Elite;
+        var isRanked = Main.Ranked;
 
         InGameData.Editable.SetupBoss(
            bossType.ToString(),
@@ -64,7 +65,6 @@ public static class LoadBoss
                    }.ToIl2CppList(),
            },
                 LeaderboardScoringType.GameTime
-             );
-        }
+        );
+    }
 }
-
